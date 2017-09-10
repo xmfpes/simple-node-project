@@ -31,3 +31,34 @@ router.get('/products', function(req, res){
     });
 });
 ```
+
+이후, 리스트를 출력해주는 뷰 코드를 ejs 템플릿 엔진을 사용해 작성한다.
+/views/admin/products.ejs 수정
+```html
+<% include ../includes/header.ejs %>
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>제목</th>
+            <th>작성일</th>
+            <th>삭제</th>
+        </tr>
+        <%products.forEach(function(product){%>
+        <tr>
+            <td>
+                <a href="/admin/products/detail/<%=product.id%>"><%=product.name%></a>
+            </td>
+            <td><%=product.created_at%></td>
+            <td>
+                <a href="#" class="btn btn-danger">삭제</a>
+            </td>
+        </tr>
+        <% }); %>
+    </table>
+ 
+    <a href="/admin/products/write" class="btn btn-default">작성하기</a>
+ 
+<% include ../includes/footer.ejs %>
+```
+
+화면에 MongoDB에 저장된 값들이 출력되는것을 확인할 수 있다.
