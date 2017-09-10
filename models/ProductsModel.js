@@ -13,6 +13,15 @@ var ProductsSchema = new Schema({
     }
 });
 
+ProductsSchema.virtual('getDate').get(function(){
+    var date = new Date(this.created_at);
+    return {
+        year : date.getFullYear(),
+        month : date.getMonth()+1,
+        day : date.getDate()
+    };
+});
+
 // 1씩 증가하는 primary Key를 만든다
 // model : 생성할 document 이름
 // field : primary key , startAt : 1부터 시작

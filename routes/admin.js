@@ -16,6 +16,13 @@ router.get('/products', function(req, res){
     });
 });
 
+router.get('/products/detail/:id' , function(req, res){
+    //url 에서 변수 값을 받아올떈 req.params.id 로 받아온다
+    ProductsModel.findOne( { 'id' :  req.params.id } , function(err ,product){
+        res.render('admin/productsDetail', { product: product });  
+    });
+});
+
 router.get('/products/write', function(req,res){
     res.render( 'admin/form');
 });
