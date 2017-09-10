@@ -1,0 +1,35 @@
+{
+  "name": "fast-node",
+  "version": "1.0.0",
+  "description": "simple-node-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmfpes/simple-node-project.git"
+  },
+  "keywords": [
+    "simple",
+    "node",
+    "project"
+  ],
+  "author": "kyunam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xmfpes/simple-node-project/issues"
+  },
+  "homepage": "https://github.com/xmfpes/simple-node-project#readme",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.10",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7"
+  }
+}
