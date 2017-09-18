@@ -1,5 +1,6 @@
 var express = require('express');
 var ProductsModel = require('../models/ProductsModel');
+var CommentsModel = require('../models/CommentsModel');
 var router = express.Router();
 
 router.get('/', function(req, res){
@@ -64,6 +65,10 @@ router.get('/products/delete/:id', function(req, res){
     ProductsModel.remove({ id : req.params.id }, function(err){
         res.redirect('/admin/products');
     });
+});
+
+router.post('/products/ajax_comment/insert', function(req, res){
+    
 });
 
 module.exports = router;
