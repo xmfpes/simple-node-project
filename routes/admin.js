@@ -41,7 +41,10 @@ router.post('/products/edit/:id', function(req, res){
 router.get('/products/detail/:id' , function(req, res){
     //url 에서 변수 값을 받아올떈 req.params.id 로 받아온다
     ProductsModel.findOne( { 'id' :  req.params.id } , function(err ,product){
-        res.render('admin/productsDetail', { product: product });  
+        //제품정보를 받고 그안에서 댓글을 받아온다.
+        CommentsModel.find({ product_id : req.params.id } , function(err, comments){
+            res.render('admin/productsDetail', { product: product , comments : comments });
+        });        
     });
 });
 
@@ -67,8 +70,19 @@ router.get('/products/delete/:id', function(req, res){
     });
 });
 
-router.post('/products/ajax_comment/insert', function(req, res){
-    
+router.post('/products/ajax_comment/insert', function(req,res){
+    var comment = new CommentsModel({
+        content : req.body.content,
+        product_id : parseInt(req.body.product_id)
+    });
+    comment.save(function(err, comment){
+        res.json({
+            id : comment.id,
+            content : comment.content,
+            message : "success"
+        });
+    });
+ 
 });
 
 module.exports = router;
